@@ -73,14 +73,14 @@ function App() {
           <Header onToggle={toggleSidebar} /> {/* Has the ability to toggle sidebar on click */}
 
           <Routes>
-            <Route path="/" element={<Start />} />
-            <Route path="/gain" element={<Gain />} />
-            <Route path="/delay" element={<DelayEcho />} />
-            <Route path="/reverb" element={<Reverb />} />
-            <Route path="/saturation" element={<Saturation />} />
-            <Route path="/filters-eq" element={<FiltersEQ />} />
-            <Route path="/beyond" element={<Beyond />} />
-            {/* Add more routes (Pages) when we get there*/}
+            <Route path="/LearnAudioEffects/" element={<Start />} />
+            <Route path="/LearnAudioEffects/gain" element={<Gain />} />
+            <Route path="/LearnAudioEffects/delay" element={<DelayEcho />} />
+            <Route path="/LearnAudioEffects/reverb" element={<Reverb />} />
+            <Route path="/LearnAudioEffects/saturation" element={<Saturation />} />
+            <Route path="/LearnAudioEffects/filters-eq" element={<FiltersEQ />} />
+            <Route path="/LearnAudioEffects/beyond" element={<Beyond />} />
+            {/* Add more routes (Pages) when we get there */}
           </Routes>
           <Footer />
         </div>
