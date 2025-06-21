@@ -1,0 +1,356 @@
+/* === General === */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: white;
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* === Layout Container === */
+.page_layout {
+  display: flex;
+  align-items: stretch;
+}
+
+/* === Static Sidebar === */
+.static_sidebar {
+  width: 80px;
+  height: 100vh;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+}
+
+.sidebar-label {
+  transform: rotate(-90deg);
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* === Content Wrapper (Header + Main + Footer) === */
+.content_wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  background-color: white;
+}
+
+/* === Header === */
+.page_header {
+  padding: 2.4em 8.8em;
+}
+
+.page_header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.chapter-title {
+  font-weight: 500;
+}
+
+/* === Main Content === */
+.main_content {
+  flex: 1;
+  padding-left: 60px;
+  padding-top: 36px;
+  margin: auto;
+  max-width: 630px;
+}
+
+h1 {
+  font-size: 52px;
+  font-weight: 700;
+  max-width: 400px;
+}
+
+p {
+  font-size: 22px;
+  padding-bottom: 5%;
+}
+
+/* === Footer === */
+.page_footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;  
+  flex-direction: column;   
+  padding: 2em;
+  padding-top: 120px;
+  padding-right: 9.5%;
+  font-size: 12px;
+  position: relative;
+  text-align: right;
+  gap: 2em;
+}
+
+.page_footer a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.page_footer a:hover {
+  text-decoration: underline;
+}
+
+/* === Hamburger Button === */
+.hamburger {
+  cursor: pointer;
+  position: fixed;
+  top: 30px;
+  left: 16px;
+  background: none;
+  border: none;
+  z-index: 100;
+  padding: 0;
+}
+
+.hamburger svg {
+  height: 3em;
+  transition: transform 600ms ease;
+}
+
+.line {
+  fill: none;
+  stroke: #333;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  transition: stroke-dasharray 600ms, stroke-dashoffset 600ms;
+}
+
+.line-top-bottom {
+  stroke-dasharray: 12 63;
+}
+
+.hamburger.active svg {
+  transform: rotate(-45deg);
+}
+
+.hamburger.active .line-top-bottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
+/* === Dynamic Sidebar (under static sidebar) === */
+.dynamic_sidebar {
+  position: fixed;
+  top: 0;
+  left: 0; /* Start at full left, behind static sidebar */
+  width: 540px;
+  height: 100vh;
+  background: #f4f4f4;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1; /* Below static_sidebar (z-index 5) */
+  padding: 0em 6.5em;
+  box-sizing: border-box;
+  font-size: 27px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dynamic_sidebar.open {
+  transform: translateX(0);
+}
+
+/* Scrollable area inside dynamic sidebar */
+.sidebar-scroll {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.dynamic_sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dynamic_sidebar li {
+  margin: 2.8em 0;
+}
+
+.dynamic_sidebar a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Chapter navigation buttons */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.prev-button {
+  color: #ccc;
+  padding-top: 32px;
+  padding: 2rem 6rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.next-button {
+  background-color: #ececec;
+  color: #333;
+  padding: 2rem 7rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.prev-placeholder, .next-placeholder {
+  width: 200px;
+}
+
+
+/* On/Off Button */
+.toggle {
+  display: inline-block;
+  position: relative;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+}
+
+.toggle {
+  position: relative;
+  height: 100px;
+  width: 100px;
+}
+
+.toggle:before {
+  box-shadow: 0;
+  border-radius: 84.5px;
+  background: #fff;
+  position: absolute;
+  margin-left: -36px;
+  margin-top: -36px;
+  opacity: 0.2;
+  height: 72px;
+  width: 72px;
+  left: 50%;
+  top: 50%;
+}
+
+.toggle .button {
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5), inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 3px 4px -1px rgba(255, 255, 255, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.8), inset 0 20px 30px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 68.8px;
+  position: absolute;
+  background: #eaeaea;
+  margin-left: -34.4px;
+  margin-top: -34.4px;
+  display: block;
+  height: 68.8px;
+  width: 68.8px;
+  left: 50%;
+  top: 50%;
+}
+
+.toggle .label {
+  transition: color 300ms ease-out;
+  line-height: 101px;
+  text-align: center;
+  position: absolute;
+  font-weight: 700;
+  font-size: 28px;
+  display: block;
+  opacity: 0.9;
+  height: 100%;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.toggle input {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.toggle input:active ~ .button {
+  filter: blur(0.5px);
+  box-shadow: 0 12px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 30px 1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 25px 0 rgba(0, 0, 0, 0.4), inset 0 0 10px 1px rgba(255, 255, 255, 0.6);
+}
+
+.toggle input:active ~ .label {
+  font-size: 26px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.toggle input:checked ~ .button {
+  filter: blur(0.5px);
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 20px 0 rgba(0, 0, 0, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
+}
+
+.toggle input:checked ~ .label {
+  color: rgba(255, 0, 98, 0.7);
+}
+
+/* Fader */
+.fader {
+  position: relative;
+  top: 25%;
+  width: 8px;
+  left: 80px;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.fader label {
+  font-weight: 400;
+  font-size: 20px;
+  color: rgba(55, 55, 55, 0.9)
+}
+
+input[type="range"]::-moz-range-track {
+  width: 6px;
+  height: 97%; /* Get rid of excess on ends */
+  background: #ced3d4;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.8);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 7px;
+  background: #333;
+  border: 4px solid #f9f9f9;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5), /* Outline */
+              0 6px 12px rgba(0,0,0,0.4); /* Bottom shadow */
+}
