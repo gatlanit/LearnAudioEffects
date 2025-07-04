@@ -4,8 +4,8 @@ import { chapters } from '../data/chapters';
 const ChapterNav = () => {
   const location = useLocation();
 
-  // Strip the fixed base path
-  const currentPath = location.pathname.replace(/^\/LearnAudioEffects\/?/, '').split('/')[0];
+  // Get the current chapter path from the URL (without slashes)
+  const currentPath = location.pathname.replace(/^\/+/, '').split('/')[0];
 
   const currentIndex = chapters.findIndex(ch => ch.path === currentPath);
   const prev = chapters[currentIndex - 1];
@@ -14,13 +14,13 @@ const ChapterNav = () => {
   return (
     <div className="chapter-nav">
       {prev ? (
-        <Link to={`/LearnAudioEffects/${prev.path}`} className="prev-button">‹ Previous</Link>
+        <Link to={`/${prev.path}`} className="prev-button">‹ Previous</Link>
       ) : (
         <div className="prev-placeholder" />
       )}
 
       {next ? (
-        <Link to={`/LearnAudioEffects/${next.path}`} className="next-button">Next ›</Link>
+        <Link to={`/${next.path}`} className="next-button">Next ›</Link>
       ) : (
         <div className="next-placeholder" />
       )}

@@ -50,7 +50,7 @@ function App() {
   }, [sidebarOpen]);
 
   return (
-    <Router>
+    <Router basename="/LearnAudioEffects">
       <ScrollToTop />
       <div className="page_layout">
         
@@ -73,13 +73,13 @@ function App() {
           <Header onToggle={toggleSidebar} /> {/* Has the ability to toggle sidebar on click */}
 
           <Routes>
-            <Route path="/LearnAudioEffects/" element={<Start />} />
-            <Route path="/LearnAudioEffects/gain" element={<Gain />} />
-            <Route path="/LearnAudioEffects/delay" element={<DelayEcho />} />
-            <Route path="/LearnAudioEffects/reverb" element={<Reverb />} />
-            <Route path="/LearnAudioEffects/saturation" element={<Saturation />} />
-            <Route path="/LearnAudioEffects/filters-eq" element={<FiltersEQ />} />
-            <Route path="/LearnAudioEffects/beyond" element={<Beyond />} />
+            <Route path="/"          element={<Start />} />
+            <Route path="gain"       element={<Gain />} />
+            <Route path="delay"      element={<DelayEcho />} />
+            <Route path="reverb"     element={<Reverb />} />
+            <Route path="saturation" element={<Saturation />} />
+            <Route path="filters-eq" element={<FiltersEQ />} />
+            <Route path="beyond"     element={<Beyond />} />
             {/* Add more routes (Pages) when we get there */}
           </Routes>
           <Footer />

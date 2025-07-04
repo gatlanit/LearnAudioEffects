@@ -18,8 +18,9 @@ const C = {
     active      : '#ffffff', // White
     activeHover : '#ec195b', // Hot Pink
   },
-  AUDIO_URL : 'public/assets/Demo.wav',
 };
+
+const AUDIO_URL = import.meta.env.BASE_URL + 'assets/Demo.wav';   // ← fixed
 
 // Sphere
 function SpinningSphere () {
@@ -38,7 +39,7 @@ function SpinningSphere () {
   /* audio ----------------------------------------------------------- */
   useEffect(() => {
     gain.current   = new Tone.Gain(C.DEFAULT_SCALE).toDestination();
-    player.current = new Tone.Player({ url: C.AUDIO_URL, loop: true }).connect(gain.current);
+    player.current = new Tone.Player({ url: AUDIO_URL, loop: true }).connect(gain.current);
 
     return () => {
       player.current?.dispose();

@@ -10,12 +10,14 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "postbuild": "cp dist/index.html dist/404.html"
   },
   "dependencies": {
     "@react-spring/three": "^10.0.1",
     "@react-three/drei": "^10.3.0",
     "@react-three/fiber": "^9.1.2",
+    "@sctg/vite-plugin-github-pages-spa": "^0.1.1",
     "@types/three": "^0.177.0",
     "gh-pages": "^6.3.0",
     "react": "^19.1.0",

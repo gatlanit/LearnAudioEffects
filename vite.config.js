@@ -1,8 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { githubPagesSpa } from '@sctg/vite-plugin-github-pages-spa'; // ← correct import
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: "/LearnAudioEffects/"
-})
+  base: '/LearnAudioEffects/',
+  plugins: [
+    react(),
+    githubPagesSpa({ verbose: true }),  // or just githubPagesSpa()
+  ],
+});
