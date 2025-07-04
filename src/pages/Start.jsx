@@ -1,5 +1,5 @@
 import ChapterNav from '../components/ChapterNav';
-import Template from '../components/scenes/template';
+import Template from '../components/scenes/Template';
 
 export default function Start() {
   document.title = "Get started | Learn Audio Effects";
