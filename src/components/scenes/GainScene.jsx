@@ -20,7 +20,7 @@ const C = {
   },
 };
 
-const AUDIO_URL = import.meta.env.BASE_URL + 'assets/Demo.wav';   // ← fixed
+const AUDIO_URL = import.meta.env.BASE_URL + 'assets/Demo.wav';
 
 // Sphere
 function SpinningSphere () {

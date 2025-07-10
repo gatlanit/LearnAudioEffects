@@ -3,7 +3,7 @@ import { chaptersMap } from '../data/chapters';
 
 const Header = ({ onToggle }) => {
   const location = useLocation();
-  const path = location.pathname.replace(/^\/LearnAudioEffects\/?/, '').split('/')[0];
+  const path = location.pathname.split('/')[1] || "";
   const chapter = chaptersMap[path] || { title: '', color: '#000' };
 
   return (
