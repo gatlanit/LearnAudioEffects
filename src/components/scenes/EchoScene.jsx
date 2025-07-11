@@ -10,6 +10,7 @@ const C = {
   DRAG_SENS: 0.005,
   SMOOTH: 0.12,
   ACCEL: 6,
+  BPM: 156,
   COLOR: {
     idle: '#8a8a8a',
     idleHover: '#94123b',
@@ -37,7 +38,7 @@ function setupAudio(ctx) {
   [bpL, bpR].forEach(bp => {
     bp.type = 'bandpass';
     bp.frequency.value = 1760;
-    bp.Q.value = 4.25;
+    bp.Q.value = 4.75;
   });
 
   panL.pan.value = -1;
@@ -184,16 +185,11 @@ export default function EchoScene({ mix, feedback, delayTime }) {
 /*
 TODO:
   - Visualize Delay
-      - Sphere like before (Hover and Interaction [Just start audio for now])
       - Using Paramaters from Dom inputs, use as visualizer paramaters
-          - Spawn and Despawn on Left and Right side (pan) at (delayTime) intervals and have them repeat in an array 
-              grid pattern for respective sides for as many times as it's repeated (feedback)
-          - Have colors get darker as nth sphere is spawned (visualize "fading" wet signal)
-          - Transparency affect by Dry/Wet (Fully wet should have fully opaque "delay spheres" while center 
-                                            sphere is transparent (just barely visible to vi sible eye) and vice versa and in between) 
+          - Flash lights on the left and right side of the sphere for each "delay" in each channel (Left and Right) and have them by synced to the delay such that they flash at {delayTime} intervals, gets more opaque as mix reaches 1 (0 makes flashes fully transparent).
+          - As mix increases, transparenecy of the main icosphere increases such that at mix: 1, the icosphere is fully transparent and at mix: 0, the icosphere is fully opaque
 
   - Should be a way to display values below with their units (feedback and dry/wet as a percentage, delayTime as a bpm or ms)
     - Should be a global and persistant "BPM" setting that can be applied across all pages
       - DelayTime should be represented in terms of BPM 1/4, 1/3, 1/8, etc.
-
 */
